@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1668774651 source:c:\users\zhiyu\downloads\c++\coursework1\main.cpp
+	"coursework1.h"
+
+1668779463 c:\users\zhiyu\downloads\c++\coursework1\coursework1.h
+	<iostream>
+	<string>
+
+1668775241 source:c:\users\zhiyu\downloads\c++\coursework1\coursework1.cpp
+	"coursework1.h"
+	"mapping.h"
+
+1668775106 c:\users\zhiyu\downloads\c++\coursework1\mapping.h
+
