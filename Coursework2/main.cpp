@@ -13,14 +13,15 @@
 
 int main()
 {
+
     int option;
     srand(time(0));
     Guess A;
 
     cout<<"Welcome to the Guess My Number Game" << endl;
-    cout<<"Please select a gamemode" << endl;
-    cout<<"1: Computer v.s. Human" << endl;
-    cout<<"2: Computer vs Computer" << endl;
+    cout<<"Please select a game mode" << endl;
+    cout<<"1: Human Guess" << endl;
+    cout<<"2: Computer Guess" << endl;
     cin>>option;
 
     if (option==1){

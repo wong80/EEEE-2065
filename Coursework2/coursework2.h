@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <bits/stdc++.h>
 #include <iomanip>
+#include <math.h>
 
 using namespace std;
 
@@ -23,9 +24,8 @@ private:
     float total;// total is a variable used to calculate the total of the counter of each attempt
     float EX; // EX is a variable used to calculate the total of the counter of each cycle squared
     float sigma; //Sigma is sigma
-    int maxNum; //maxNum is the variable of the max number of attempts taken to guess the number
     float mean; //mean is the mean number of times for computer to attempt to guess the number
-    int arr[]; //arr is an array used to store the number of attempts from each individual cycle
+    int arr[40]; //arr is an array used to store the number of attempts from each individual cycle
 
 public:
 
@@ -36,14 +36,12 @@ public:
     void setTarget(int target) {this->target=target;}
     void setDecision (int decision) {this->decision=decision;}
     void setCounter(int counter) {this->counter=counter;}
-    void setmaxNum (int maxNum) {this->maxNum=maxNum;}
     void setN (int n) {this->n=n;}
     void setConstUpperLimit(int CONST_UPPER_LIMIT){this->CONST_UPPER_LIMIT=CONST_UPPER_LIMIT;}
 
     //calculation functions
     float calculateMean(int*,int);
     float calculateSigma(int*,int);
-    void calculateMax(int*,int);
 
     //program functions
     void generateGuess();

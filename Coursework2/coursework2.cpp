@@ -32,33 +32,37 @@ void Guess::computerGuess(){
     cin>>n;
     setN(n);
 
-    for (int i=0;i<n;i++){
-    flag=1;
-    setCounter(0); //counter is set to zero after every cycle
-    generateTarget(); //target is changed after every cycle
-    generateGuess();
-
-    while (flag==1){
-
-        compareNumberComputer(target,guessNumber);
-        computerDecision(guessNumber,decision);
-        computerGuess(LOWER_LIMIT,UPPER_LIMIT);
-        counter++;
-        }
-        arr[i]=counter; //the number of attempts is assigned into the array every cycle
-        //the upper and lower bounds will be reset everytime the cycle refreshes
-        setUPPER_LIMIT(CONST_UPPER_LIMIT);
-        setLOWER_LIMIT(1);
+    //to initialize the arrays to zero
+    for (int l=0;l<100;l++){
+        arr[l]=0;
     }
 
+    for (int i=0;i<n;i++){
+        flag=1;
+        setCounter(0); //counter is set to zero after every cycle
+        generateTarget(); //target is changed after every cycle
+        generateGuess();
 
-    calculateMax(arr,n);
-    calculateMean(arr,n);
-    calculateSigma(arr,n);
-    cout << "Max : "<< maxNum << endl;
-    makeHistogram(arr,n);
-    cout << "Mean :" << mean << "  ";
-    cout << "Sigma : "<< sigma << endl;
+
+        while (flag==1){
+
+            compareNumberComputer(target,guessNumber);
+            computerDecision(guessNumber,decision);
+            computerGuess(LOWER_LIMIT,UPPER_LIMIT);
+            counter++;
+            }
+            arr[counter]++; //the number of attempts is assigned into the array every cycle
+
+            //the upper and lower bounds will be reset every time the cycle refreshes
+            setUPPER_LIMIT(CONST_UPPER_LIMIT);
+            setLOWER_LIMIT(1);
+        }
+
+        calculateMean(arr,n);
+        calculateSigma(arr,n);
+        makeHistogram(arr,n);
+        cout << "Mean :" << mean << "  ";
+        cout << "Sigma : "<< sigma << endl;
 }
 
 //function to make Histogram
@@ -66,51 +70,44 @@ void Guess::makeHistogram(int arr[],int n){
 
 //Outer loop determines the number of rows to be printed
 //Inner Loop determines the number of times "*" is printed based on the value of the array at that specific position
-    for (int rowNum=0; rowNum < n;rowNum++){
-
-        cout <<  rowNum << "/" << arr[rowNum] << " ";
+    for (int rowNum=0; rowNum < 40;rowNum++){
+        cout << rowNum << " | " ;
+        cout << arr[rowNum] << " ";
         for (int j=0;j<arr[rowNum];j++){\
 
             cout<< "*";
         }
     cout << endl;
 
-
     }
+
 }
+
+
 
 //function to calculate mean
 float Guess::calculateMean (int arr[],int n){
 
-    for (int i=0;i<n;i++){
-        total+=arr[i];
+    for (int i=0;i<40;i++){
+
+        total+=arr[i]*i;
     }
     mean=total/n;
     return (mean);
 }
 
-//function to calculate max
-void Guess::calculateMax(int arr[],int n){
 
-// Initialize maximum element
-    setmaxNum(arr[0]);
 
-//each number in the array will iterated to be compared, largest number will be assigned to maxNum
-    for (int i = 1; i < n; i++)
-        if (arr[i] > maxNum)
-            setmaxNum(arr[i]);
-
-}
 
 //function to calculate sigma
-
 float Guess::calculateSigma(int arr[],int n){
 
-    for (int i=0;i<n;i++){
-        EX+=pow(arr[i],2);
+    for (int i=0;i<40;i++){
+        EX+=i*i*arr[i];
     }
 
-    sigma=(EX/n)-pow(mean,2);
+    //formula for calculating sigma
+    sigma=sqrt((EX/n)-(mean*mean));
 
     return (sigma);
 }
